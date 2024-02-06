@@ -1,0 +1,32 @@
+export const config = {
+  dimensions: ['xs', 'sm', 'md', 'lg', 'xl'],
+  baseSize: 16,
+  grid: 12,
+  gutterWidth: 1,
+  paddingWidth: 1,
+  container: {
+    sm: 46,
+    md: 61,
+    lg: 76,
+  },
+  breakpoints: {
+    xs: 0,
+    sm: 576,
+    md: 768,
+    lg: 992,
+  },
+  colors: {
+    p100: '#F5F3FF',
+    p200: '#6D28D9',
+    n100: '#F3F4F6',
+    n200: '#EFF0F5',
+    n300: '#D1D5DB',
+    n400: '#6B7280',
+    n500: '#333945',
+    black: '#000',
+    white: '#fff',
+    red: '#EF4444',
+    green: '#10B981',
+    yellow: '#FBBF24',
+  },
+};

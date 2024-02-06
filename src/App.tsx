@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Grid, Col, Row } from './components';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Grid fluid>
+        <Row>
+          <Col xs={12} md={8}>
+            asda
+          </Col>
+          <Col xs={12} md={4}>
+            <Row>
+              <Col xs={12}>asd</Col>
+            </Row>
+          </Col>
+        </Row>
+      </Grid>
     </div>
   );
 }
