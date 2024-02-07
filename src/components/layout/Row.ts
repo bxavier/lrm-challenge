@@ -1,5 +1,5 @@
-import { config } from '../config';
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 
 interface IRowProps {
   reverse?: boolean;
@@ -22,8 +22,8 @@ const Row = styled.div<IRowProps>`
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-right: ${config.gutterWidth * -1}rem;
-  margin-left: ${config.gutterWidth * -1}rem;
+  margin-right: ${theme.gutterWidth * -1}rem;
+  margin-left: ${theme.gutterWidth * -1}rem;
   border: 1px solid red;
 
   ${p => p.reverse && `flex-direction: row-reverse;`}

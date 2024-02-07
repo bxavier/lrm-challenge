@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { config } from '../config';
+import theme from '../../styles/theme';
 
 interface IGridProps {
   fluid?: boolean;
@@ -9,20 +9,20 @@ interface IGridProps {
 const Grid = styled.div<IGridProps>`
   margin-right: auto;
   margin-left: auto;
-  padding-right: ${config.gutterWidth + 'rem'};
-  padding-left: ${config.gutterWidth + 'rem'};
+  padding-right: ${theme.gutterWidth + 'rem'};
+  padding-left: ${theme.gutterWidth + 'rem'};
   height: 100%;
 
   ${p =>
     !p.fluid &&
-    `@media (min-width: ${config.breakpoints.sm}px) {
-      width: ${config.container.sm}rem;
+    `@media (min-width: ${theme.breakpoints.sm}px) {
+      width: ${theme.container.sm}rem;
     }
-    @media (min-width: ${config.breakpoints.md}px) {
-      width: ${config.container.md}rem;
+    @media (min-width: ${theme.breakpoints.md}px) {
+      width: ${theme.container.md}rem;
     }
-    @media (min-width: ${config.breakpoints.lg}px) {
-      width: ${config.container.lg}rem;
+    @media (min-width: ${theme.breakpoints.lg}px) {
+      width: ${theme.container.lg}rem;
     }
   `}
 `;

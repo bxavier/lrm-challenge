@@ -1,27 +1,31 @@
 import styled from 'styled-components';
-import { config } from '../config';
+import theme from '../../styles/theme';
+
+interface IColumn {
+  xs?: number | false | undefined;
+  sm?: number | false | undefined;
+  md?: number | false | undefined;
+  lg?: number | false | undefined;
+}
 
 interface IColProps {
-  xs?: number | false;
-  sm?: number;
-  md?: number;
-  lg?: number;
+  cols?: IColumn;
   reverse?: boolean;
   children: React.ReactNode;
 }
 
-function getFlexBasis(grid: number | false) {
-  return grid === false
+function getFlexBasis(grid: number | false | undefined) {
+  return !grid
     ? `display: none;`
-    : `flex: 0 0 ${(grid / config.grid) * 100}%;
+    : `flex: 0 0 ${(grid / theme.grid) * 100}%;
 `;
 }
 
 const Col = styled.div<IColProps>`
   box-sizing: border-box;
   flex: 0 0 auto;
-  padding-right: ${config.gutterWidth}rem;
-  padding-left: ${config.gutterWidth}rem;
+  padding-right: ${theme.gutterWidth}rem;
+  padding-left: ${theme.gutterWidth}rem;
   border: 1px solid red;
 
   ${p =>
@@ -31,28 +35,14 @@ const Col = styled.div<IColProps>`
   `}
 
   ${p =>
-    p.xs &&
-    `@media (min-width: ${config.breakpoints.xs}px) {
-      ${getFlexBasis(p.xs)};
-    }`}
-
-  ${p =>
-    p.sm &&
-    `@media (min-width: ${config.breakpoints.sm}px) {
-      ${getFlexBasis(p.sm)};
-    }`}
-  
-  ${p =>
-    p.md &&
-    `@media (min-width: ${config.breakpoints.md}px) {
-      ${getFlexBasis(p.md)};
-    }`}
-
-  ${p =>
-    p.lg &&
-    `@media (min-width: ${config.breakpoints.lg}px) {
-      ${getFlexBasis(p.lg)};
-    }`}
+    p.cols &&
+    Object.keys(p.cols).map(column => {
+      return `
+        @media (min-width: ${theme.breakpoints[column as keyof IColumn]}px) {
+          ${p.cols && getFlexBasis(p.cols[column as keyof IColumn])}
+        }
+      `;
+    })}
 `;
 
 export default Col;

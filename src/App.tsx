@@ -1,23 +1,32 @@
 import React from 'react';
 import './App.css';
-import { Grid, Col, Row } from './components';
+import { Grid, Col, Row, Spacer, Typography } from './components';
+import { ThemeProvider } from 'styled-components';
+import theme from './styles/theme';
+import GlobalStyle from './styles/GlobalStyles';
 
 function App() {
   return (
-    <div className="App">
-      <Grid fluid>
-        <Row>
-          <Col xs={12} md={8}>
-            asda
-          </Col>
-          <Col xs={12} md={4}>
-            <Row>
-              <Col xs={12}>asd</Col>
-            </Row>
-          </Col>
-        </Row>
-      </Grid>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+
+      <div className="App">
+        <Grid>
+          <Row>
+            <Col cols={{ xs: 12, md: 8 }}>
+              <Spacer spacing={{ xs: { m: 1 } }}>
+                <Typography variant="h3">Variant</Typography>
+              </Spacer>
+            </Col>
+            <Col cols={{ xs: 12, md: 4 }}>
+              <Row>
+                <Col cols={{ xs: 12 }}>asd</Col>
+              </Row>
+            </Col>
+          </Row>
+        </Grid>
+      </div>
+    </ThemeProvider>
   );
 }
 
