@@ -17,13 +17,15 @@ const VariantMap = {
 
 interface IDivProps {
   color?: keyof typeof theme.colors;
-  size?: keyof typeof theme.fonts.sizes;
   weight?: keyof typeof theme.fonts.weights;
+  variant: keyof typeof VariantMap;
 }
 
 const Div = styled.div<IDivProps>`
-  color: ${props => theme.colors[props.color as keyof typeof theme.colors]};
-  font-size: ${props => theme.fonts.sizes[props.size as keyof typeof theme.fonts.sizes]};
+  color: ${props => theme.colors[props.color || 'black']};
+  font-size: ${props => theme.fonts.tagProperties[props.variant].size};
+  font-family: ${props => theme.fonts.tagProperties[props.variant].size};
+  font-weight: ${props => theme.fonts.tagProperties[props.variant].weight};
 `;
 
 interface ITypographyProps extends IDivProps {
@@ -31,17 +33,11 @@ interface ITypographyProps extends IDivProps {
   children?: React.ReactNode;
 }
 
-const Typography = ({
-  variant = 'body1',
-  children,
-  color = 'black',
-  size = variant,
-  weight = 'regular',
-}: ITypographyProps) => {
+const Typography = ({ variant = 'body1', children, color = 'black', weight = 'regular' }: ITypographyProps) => {
   const selectedComponent = VariantMap[variant];
 
   return (
-    <Div as={selectedComponent} color={color} size={size} weight={weight}>
+    <Div as={selectedComponent} color={color} weight={weight} variant={variant}>
       {children}
     </Div>
   );

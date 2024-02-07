@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import theme from '../../styles/theme';
 
 interface ISizeProps {
@@ -14,13 +14,15 @@ interface ISizeProps {
   pb?: number;
 }
 
+interface IBreakpointProps {
+  xs?: ISizeProps;
+  sm?: ISizeProps;
+  md?: ISizeProps;
+  lg?: ISizeProps;
+}
+
 export interface ISpacerProps {
-  spacing: {
-    xs?: ISizeProps;
-    sm?: ISizeProps;
-    md?: ISizeProps;
-    lg?: ISizeProps;
-  };
+  spacing?: IBreakpointProps;
 }
 
 const Spacer = styled.div<ISpacerProps>`
@@ -30,20 +32,23 @@ const Spacer = styled.div<ISpacerProps>`
   ${p =>
     p.spacing &&
     Object.keys(p.spacing).map(spacer => {
-      return `
-        @media (min-width: ${theme.breakpoints[spacer as keyof ISpacerProps['spacing']]}px) {
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.m && `margin: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.m}rem;`}
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.mt && `margin-top: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.mt}rem;`}
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.mr && `margin-right: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.mr}rem;`}
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.ml && `margin-left: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.ml}rem;`}
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.mb && `margin-bottom: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.mb}rem;`}
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.p && `padding: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.p}rem;`}
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.pt && `padding-top: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.pt}rem;`}
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.pr && `padding-right: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.pr}rem;`}
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.pl && `padding-left: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.pl}rem;`}
-          ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.pb && `padding-bottom: ${p.spacing[spacer as keyof ISpacerProps['spacing']]?.pb}rem;`}
+      const s = spacer as keyof IBreakpointProps;
+      const spacers = css`
+        @media (min-width: ${theme.breakpoints[s]}px) {
+          ${p.spacing && p.spacing[s]?.m && `margin: ${p.spacing[s]?.m}rem;`}
+          ${p.spacing && p.spacing[s]?.mt && `margin-top: ${p.spacing[s]?.mt}rem;`}
+          ${p.spacing && p.spacing[s]?.mr && `margin-right: ${p.spacing[s]?.mr}rem;`}
+          ${p.spacing && p.spacing[s]?.ml && `margin-left: ${p.spacing[s]?.ml}rem;`}
+          ${p.spacing && p.spacing[s]?.mb && `margin-bottom: ${p.spacing[s]?.mb}rem;`}
+          ${p.spacing && p.spacing[s]?.p && `padding: ${p.spacing[s]?.p}rem;`}
+          ${p.spacing && p.spacing[s]?.pt && `padding-top: ${p.spacing[s]?.pt}rem;`}
+          ${p.spacing && p.spacing[s]?.pr && `padding-right: ${p.spacing[s]?.pr}rem;`}
+          ${p.spacing && p.spacing[s]?.pl && `padding-left: ${p.spacing[s]?.pl}rem;`}
+          ${p.spacing && p.spacing[s]?.pb && `padding-bottom: ${p.spacing[s]?.pb}rem;`}
         }
       `;
+      console.log(spacers);
+      return spacers;
     })}
 `;
 

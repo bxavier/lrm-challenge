@@ -4,6 +4,7 @@ import { Grid, Col, Row, Spacer, Typography } from './components';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
 import GlobalStyle from './styles/GlobalStyles';
+import HorizontalRule from './components/layout/HorizontalRule';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <Grid>
           <Row>
             <Col cols={{ xs: 12, md: 8 }}>
-              <Spacer spacing={{ xs: { m: 1 } }}>
-                <Typography variant="h3">Variant</Typography>
+              <Spacer spacing={{ xs: { mt: 2, mb: 2, mr: 1, ml: 1 } }}>
+                <Typography variant="h3">Meu carrinho</Typography>
+                <HorizontalRule />
               </Spacer>
             </Col>
             <Col cols={{ xs: 12, md: 4 }}>
