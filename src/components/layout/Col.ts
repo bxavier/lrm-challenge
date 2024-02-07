@@ -12,12 +12,18 @@ interface IColProps {
   cols?: IColumn;
   reverse?: boolean;
   children: React.ReactNode;
+  start?: boolean;
+  center?: boolean;
+  end?: boolean;
+  top?: boolean;
+  middle?: boolean;
+  bottom?: boolean;
 }
 
 function getFlexBasis(grid: number | false | undefined) {
   return !grid
     ? `display: none;`
-    : `flex: 0 0 ${(grid / theme.grid) * 100}%;
+    : `flex: 0 0 ${(grid / theme.grid) * 100}%; display: block;
 `;
 }
 
@@ -26,7 +32,6 @@ const Col = styled.div<IColProps>`
   flex: 0 0 auto;
   padding-right: ${theme.gutterWidth}rem;
   padding-left: ${theme.gutterWidth}rem;
-  border: 1px solid red;
 
   ${p =>
     p.reverse &&

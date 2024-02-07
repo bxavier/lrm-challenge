@@ -27,7 +27,6 @@ export interface ISpacerProps {
 
 const Spacer = styled.div<ISpacerProps>`
   box-sizing: border-box;
-  border: 1px solid red;
 
   ${p =>
     p.spacing &&

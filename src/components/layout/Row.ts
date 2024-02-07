@@ -24,7 +24,7 @@ const Row = styled.div<IRowProps>`
   flex-wrap: wrap;
   margin-right: ${theme.gutterWidth * -1}rem;
   margin-left: ${theme.gutterWidth * -1}rem;
-  border: 1px solid red;
+  height: 100%;
 
   ${p => p.reverse && `flex-direction: row-reverse;`}
   ${p => p.start && `justify-content: flex-start;`}

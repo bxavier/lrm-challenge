@@ -24,7 +24,7 @@ interface IDivProps {
 const Div = styled.div<IDivProps>`
   color: ${props => theme.colors[props.color || 'black']};
   font-size: ${props => theme.fonts.tagProperties[props.variant].size};
-  font-family: ${props => theme.fonts.tagProperties[props.variant].size};
+  font-family: ${props => theme.fonts.tagProperties[props.variant].family};
   font-weight: ${props => theme.fonts.tagProperties[props.variant].weight};
 `;
 
