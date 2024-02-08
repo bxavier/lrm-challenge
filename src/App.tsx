@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
-import './App.css';
-import { Grid, Col, Row, Spacer, Typography } from './components';
 import { ThemeProvider } from 'styled-components';
-import theme from './styles/theme';
-import GlobalStyle from './styles/GlobalStyles';
-import HorizontalRule from './components/layout/HorizontalRule';
-import ProductList from './components/elements/ProductList';
-import { useAppDispatch, useAppSelector } from './store/store';
+import { Aside, BasketContent, Grid, Row } from './components';
 import { fetchProducts, updateTotal } from './store/features/basketSlice';
-import Header from './components/elements/Header';
+import { fetchShippings } from './store/features/shippingSlice';
+import { useAppDispatch, useAppSelector } from './store/store';
+import GlobalStyle from './styles/GlobalStyles';
+import theme from './styles/theme';
 
 function App() {
   const { amount, products } = useAppSelector(state => state.basket);
@@ -17,6 +14,8 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(fetchShippings());
+    console.log('dispatched');
   }, []);
 
   useEffect(() => {
@@ -30,20 +29,8 @@ function App() {
       <div className="App">
         <Grid>
           <Row>
-            <Col $cols={{ xs: 12, md: 9 }}>
-              <Spacer spacing={{ xs: { pt: 4, pb: 2, pr: 2, pl: 2 } }}>
-                <Header amount={amount} />
-                <HorizontalRule />
-                <ProductList />
-              </Spacer>
-            </Col>
-            <Col $cols={{ xs: 12, md: 3 }}>
-              <Row>
-                <Col $cols={{ xs: 12 }}>
-                  <Typography $variant="h6">Subtotal</Typography>
-                </Col>
-              </Row>
-            </Col>
+            <BasketContent amount={amount} />
+            <Aside />
           </Row>
         </Grid>
       </div>

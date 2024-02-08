@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 interface IShipping {
   type: string;
@@ -12,20 +12,17 @@ interface IShippingState {
 }
 
 const initialState: IShippingState = {
-  shippings: [
-    {
-      type: 'standard',
-      description: '3-5 business days',
-      cost: 5,
-    },
-    {
-      type: 'express',
-      description: '1-2 business days',
-      cost: 10,
-    },
-  ],
+  shippings: [],
   selected: null,
 };
+
+export const fetchShippings = createAsyncThunk('shipping/fetchShippings', async () => {
+  const response = await fetch('https://noy33phhn9.execute-api.us-east-1.amazonaws.com/dev/api/freight', {
+    method: 'GET',
+  });
+  const data = await response.json();
+  return data;
+});
 
 const shippingSlice = createSlice({
   name: 'shipping',
@@ -35,8 +32,13 @@ const shippingSlice = createSlice({
       state.selected = state.shippings.find(shipping => shipping.type === action.payload.type) || null;
     },
   },
+  extraReducers: builder => {
+    builder.addCase(fetchShippings.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.shippings = action.payload;
+    });
+  },
 });
 
 export const { selectShipping } = shippingSlice.actions;
-
 export default shippingSlice.reducer;

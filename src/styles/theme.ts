@@ -6,12 +6,14 @@ export default {
     sm: 46,
     md: 61,
     lg: 76,
+    xl: 86,
   },
   breakpoints: {
     xs: 0,
     sm: 576,
     md: 768,
     lg: 992,
+    xl: 1200,
   },
   border: {
     radius: '0.4rem',

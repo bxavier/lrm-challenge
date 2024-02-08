@@ -24,6 +24,9 @@ const Grid = styled.div<IGridProps>`
     @media (min-width: ${theme.breakpoints.lg}px) {
       width: ${theme.container.lg}rem;
     }
+    @media (min-width: ${theme.breakpoints.xl}px) {
+      width: ${theme.container.xl}rem;
+    }
   `}
 `;
 

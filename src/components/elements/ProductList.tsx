@@ -1,9 +1,9 @@
 import React from 'react';
-import { Col, Row } from '..';
 import { styled } from 'styled-components';
-import ProductListItem from './ProductListItem';
-import { useAppSelector } from '../../store/store';
 import { v4 as uuidv4 } from 'uuid';
+import { useAppSelector } from '../../store/store';
+import { Col, Row } from '../index';
+import ProductListItem from './ProductListItem';
 
 const Listing = styled.ul`
   list-style: none;

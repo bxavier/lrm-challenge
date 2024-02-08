@@ -52,12 +52,11 @@ const basketSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      const payload = action.payload.map((obj: IProduct) => ({ ...obj, amount: 0 }));
+      const payload = action.payload.map((obj: IProduct) => ({ ...obj, amount: 1 }));
       state.products = payload;
     });
   },
 });
 
 export const { increaseAmount, decreaseAmount, updateTotal } = basketSlice.actions;
-
 export default basketSlice.reducer;

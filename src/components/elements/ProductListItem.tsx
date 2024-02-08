@@ -1,17 +1,16 @@
 import React from 'react';
-import { Col, Row, Typography } from '..';
 import { styled } from 'styled-components';
-import theme from '../../styles/theme';
 import { IProduct, decreaseAmount, increaseAmount } from '../../store/features/basketSlice';
 import { useAppDispatch } from '../../store/store';
+import { Col, Row, Typography } from '../index';
 
 const ListItem = styled.li`
   padding: 0;
   margin-bottom: 2rem;
   border-radius: 0.5rem;
-  border: 1px solid ${theme.colors.neutral300};
+  border: 1px solid ${({ theme }) => theme.colors.neutral300};
   &:nth-child(odd) {
-    background-color: ${theme.colors.neutral100};
+    background-color: ${({ theme }) => theme.colors.neutral100};
   }
   &:nth-child(even) {
     background-color: #fff;
@@ -44,12 +43,12 @@ const LikeHeart = styled.span`
 `;
 
 const Amount = styled.div`
-  font-family: ${theme.fonts.tagProperties.body1.family};
-  font-size: ${theme.fonts.tagProperties.body1.size};
+  font-family: ${({ theme }) => theme.fonts.tagProperties.body1.family};
+  font-size: ${({ theme }) => theme.fonts.tagProperties.body1.size};
   padding: 0 0.3rem;
   border-radius: 1rem;
-  background-color: ${theme.colors.white};
-  border: 1px solid ${theme.colors.neutral300};
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.neutral300};
   text-align: center;
   display: inline-block;
 `;
@@ -78,7 +77,7 @@ const ProductListItem = ({ product }: { product: IProduct }) => {
         </Col>
         <Col style={{ width: 'calc(100% - 156px)' }}>
           <Row>
-            <Col $cols={{ xs: 12, md: 4 }}>
+            <Col $cols={{ xs: 12, md: 3 }}>
               <Typography $variant="h6" $color="neutral400">
                 {name}
               </Typography>
@@ -102,7 +101,7 @@ const ProductListItem = ({ product }: { product: IProduct }) => {
               </Typography>
             </Col>
 
-            <Col $cols={{ xs: 12, md: 2 }}>
+            <Col $cols={{ xs: 12, md: 3 }}>
               <Amount>
                 <AmountButton
                   onClick={() => {

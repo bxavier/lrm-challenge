@@ -1,6 +1,6 @@
 import React from 'react';
-import { Col, Row, Spacer, Typography } from '..';
 import iconBag from '../../assets/icon-bag.png';
+import { Col, Row, Spacer, Typography } from '../index';
 
 const Header = ({ amount }: { amount: number }) => {
   return (
@@ -11,7 +11,7 @@ const Header = ({ amount }: { amount: number }) => {
       <Col $cols={{ xs: 4 }}>
         <Row $end $middle style={{ margin: 0 }}>
           <img src={iconBag} alt="Carrinho de compras" />
-          <Spacer spacing={{ xs: { ml: 0.2 } }}>
+          <Spacer $spacing={{ xs: { ml: 0.2 } }}>
             <Typography $variant="body2">{amount} itens</Typography>
           </Spacer>
         </Row>
