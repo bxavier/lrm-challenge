@@ -5,4 +5,8 @@ import Spacer from './layout/Spacer';
 import Typography from './layout/Typography';
 import HorizontalRule from './layout/HorizontalRule';
 
-export { Grid, Row, Col, Spacer, Typography, HorizontalRule };
+import Header from './elements/Header';
+import ProductList from './elements/ProductList';
+import ProductListItem from './elements/ProductListItem';
+
+export { Grid, Row, Col, Spacer, Typography, HorizontalRule, Header, ProductList, ProductListItem };

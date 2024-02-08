@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 
 interface IGridProps {
-  fluid?: boolean;
+  $fluid?: boolean;
   children?: React.ReactNode;
 }
 
@@ -14,7 +14,7 @@ const Grid = styled.div<IGridProps>`
   height: 100%;
 
   ${p =>
-    !p.fluid &&
+    !p.$fluid &&
     `@media (min-width: ${theme.breakpoints.sm}px) {
       width: ${theme.container.sm}rem;
     }

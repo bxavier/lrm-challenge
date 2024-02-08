@@ -16,28 +16,28 @@ const VariantMap = {
 } as const;
 
 interface IDivProps {
-  color?: keyof typeof theme.colors;
-  weight?: keyof typeof theme.fonts.weights;
-  variant: keyof typeof VariantMap;
+  $color?: keyof typeof theme.colors;
+  $weight?: keyof typeof theme.fonts.weights;
+  $variant: keyof typeof VariantMap;
 }
 
 const Div = styled.div<IDivProps>`
-  color: ${props => theme.colors[props.color || 'black']};
-  font-size: ${props => theme.fonts.tagProperties[props.variant].size};
-  font-family: ${props => theme.fonts.tagProperties[props.variant].family};
-  font-weight: ${props => theme.fonts.tagProperties[props.variant].weight};
+  color: ${props => theme.colors[props.$color || 'black']};
+  font-size: ${props => theme.fonts.tagProperties[props.$variant].size};
+  font-family: ${props => theme.fonts.tagProperties[props.$variant].family};
+  font-weight: ${props => theme.fonts.tagProperties[props.$variant].weight};
 `;
 
 interface ITypographyProps extends IDivProps {
-  variant: keyof typeof VariantMap;
+  $variant: keyof typeof VariantMap;
   children?: React.ReactNode;
 }
 
-const Typography = ({ variant = 'body1', children, color = 'black', weight = 'regular' }: ITypographyProps) => {
-  const selectedComponent = VariantMap[variant];
+const Typography = ({ $variant = 'body1', children, $color = 'black', $weight = 'regular' }: ITypographyProps) => {
+  const selectedComponent = VariantMap[$variant];
 
   return (
-    <Div as={selectedComponent} color={color} weight={weight} variant={variant}>
+    <Div as={selectedComponent} $color={$color} $weight={$weight} $variant={$variant}>
       {children}
     </Div>
   );

@@ -46,7 +46,6 @@ const Spacer = styled.div<ISpacerProps>`
           ${p.spacing && p.spacing[s]?.pb && `padding-bottom: ${p.spacing[s]?.pb}rem;`}
         }
       `;
-      console.log(spacers);
       return spacers;
     })}
 `;

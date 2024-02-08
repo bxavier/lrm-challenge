@@ -9,15 +9,9 @@ interface IColumn {
 }
 
 interface IColProps {
-  cols?: IColumn;
-  reverse?: boolean;
+  $cols?: IColumn;
+  $reverse?: boolean;
   children: React.ReactNode;
-  start?: boolean;
-  center?: boolean;
-  end?: boolean;
-  top?: boolean;
-  middle?: boolean;
-  bottom?: boolean;
 }
 
 function getFlexBasis(grid: number | false | undefined) {
@@ -34,17 +28,17 @@ const Col = styled.div<IColProps>`
   padding-left: ${theme.gutterWidth}rem;
 
   ${p =>
-    p.reverse &&
+    p.$reverse &&
     `
     flex-direction: column-reverse;
   `}
 
   ${p =>
-    p.cols &&
-    Object.keys(p.cols).map(column => {
+    p.$cols &&
+    Object.keys(p.$cols).map(column => {
       return `
         @media (min-width: ${theme.breakpoints[column as keyof IColumn]}px) {
-          ${p.cols && getFlexBasis(p.cols[column as keyof IColumn])}
+          ${p.$cols && getFlexBasis(p.$cols[column as keyof IColumn])}
         }
       `;
     })}
